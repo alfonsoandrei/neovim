@@ -3,3 +3,12 @@
 -- Add any additional options here
 
 vim.opt.relativenumber = false
+
+vim.diagnostic.config({
+  virtual_text = false, -- Disable virtual text
+  float = {
+    source = "always", -- Show source in the floating window
+    border = "rounded", -- Use rounded border for the floating window
+    width = 80, -- Set your desired width here
+  },
+})

@@ -2,5 +2,14 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- Copilot keymaps
 vim.api.nvim_set_keymap("n", "<leader>cp", ":CopilotChatOpen<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>co", ":CopilotChatClose<CR>", { noremap = true, silent = true })
+
+-- LSP hint floating pane keymaps
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>r",
+  "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
+  { noremap = true, silent = true }
+)

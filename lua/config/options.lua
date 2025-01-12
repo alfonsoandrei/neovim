@@ -4,6 +4,9 @@
 
 vim.opt.relativenumber = false
 
+-- enable error float diagnostics
+-- See configs in keymaps to trigger the float
+-- Crrently set to   "<leader>r",
 vim.diagnostic.config({
   virtual_text = false, -- Disable virtual text
   float = {

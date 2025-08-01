@@ -16,4 +16,5 @@ require("lspconfig").typos_lsp.setup({
 })
 
 -- Enable debug logs for the LSP client. Recommended for debugging only.
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("error")

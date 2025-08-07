@@ -3,5 +3,5 @@
 -- Add any additional keymaps here
 
 -- Copilot keymaps
-vim.api.nvim_set_keymap("n", "<leader>cp", ":CopilotChatOpen<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>co", ":CopilotChatClose<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>cp", ":CopilotChatOpen<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>co", ":CopilotChatClose<CR>", { noremap = true, silent = true })

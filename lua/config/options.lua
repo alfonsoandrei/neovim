@@ -2,7 +2,13 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- vim.opt.relativenumber = false
+local opt = vim.opt
+
+-- opt.relativenumber = false
+
+opt.guicursor = "n:block-blinkon250-blinkoff150,i:ver25"
+
+opt.scrolloff = 8
 
 -- enable error float diagnostics
 -- See configs in keymaps to trigger the float

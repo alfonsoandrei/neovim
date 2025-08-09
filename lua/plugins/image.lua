@@ -8,6 +8,8 @@ return {
         clear_in_insert_mode = true,
         download_remote_images = true,
         show_uri = true,
+        only_render_image_at_cursor = true,
+        only_render_image_at_cursor_mode = "n",
       },
     },
     -- Optional: set a max width and height for all images

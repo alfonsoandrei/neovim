@@ -26,13 +26,14 @@ return {
     },
   },
 
-  -- Markdown preview and LaTeX rendering
+  -- Markview
   {
     "OXY2DEV/markview.nvim",
     lazy = true,
     ft = { "markdown" },
     config = function()
       vim.g.markview_conceal_same_line = 1
+      -- vim.g.markview_log_level = "debug"
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -43,16 +44,14 @@ return {
   -- Treesitter configuration for markdown and custom highlighting
   {
     "nvim-treesitter/nvim-treesitter",
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-      -- Custom highlighting for ====
-      vim.api.nvim_set_hl(0, "ObsidianHighlight", { fg = "#8A2BE2", bold = true }) -- Plum color
-    end,
-    opts = function(_, opts)
-      if opts.ensure_installed ~= "all" then
-        -- Ensure the markdown parsers are installed
-        opts.ensure_installed = vim.list_extend(opts.ensure_installed or {}, { "markdown", "markdown_inline", "math" })
-      end
-    end,
+    -- The opts function runs BEFORE the plugin is loaded.
+    -- We use it to tell nvim-treesitter to install our parsers.
+    opts = {
+      ensure_installed = { "markdown", "markdown_inline" },
+      highlight = {
+        enable = true,
+      },
+    },
   },
 }
+

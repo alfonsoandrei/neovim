@@ -5,6 +5,10 @@ return {
       servers = {
         -- VTSLS is the new default for typescript
         vtsls = {
+          on_attach = function()
+            -- We are applying the highlight after the LSP has attached to ensure it takes priority
+            vim.api.nvim_set_hl(0, "@lsp.type.function.typescript", { fg = "#C4A7E7" })
+          end,
           settings = {
             typescript = {
               inlayHints = {

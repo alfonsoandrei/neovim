@@ -165,6 +165,34 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 | `<leader>ol` | Show note links           |
 | `<leader>ob` | Show backlinks            |
 
+### Spell Checking
+
+| Keymap          | Description                         |
+| --------------- | ----------------------------------- |
+| `]s`            | Jump to next misspelled word        |
+| `[s`            | Jump to previous misspelled word    |
+| `z=`            | Show spelling suggestions           |
+| `<leader>sg`    | Add word to dictionary (good)       |
+| `<leader>sw`    | Mark word as misspelled (wrong)     |
+| `<leader>sG`    | Add word to session dictionary      |
+| `<leader>sW`    | Mark word as wrong for session      |
+| `<leader>sug`   | Undo add to dictionary              |
+| `<leader>suw`   | Undo mark as wrong                  |
+| `<leader>ts`    | Toggle spell checking on/off       |
+
+### Text Editing
+
+| Keymap    | Mode   | Description                           |
+| --------- | ------ | ------------------------------------- |
+| `S{char}` | Visual | Surround selection with character     |
+
+#### Surround Examples
+- Select text → `S"` → surround with double quotes
+- Select text → `S(` → surround with parentheses  
+- Select text → `S[` → surround with square brackets
+- Select text → `S{` → surround with curly braces
+- Select text → `S*` → surround with asterisks
+
 ## Autocmds
 
 There are no custom autocommands defined in this configuration. The `lua/config/autocmds.lua` file is available for adding custom autocommands in the future.

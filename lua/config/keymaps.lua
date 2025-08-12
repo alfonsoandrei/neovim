@@ -5,3 +5,20 @@
 -- Copilot keymaps
 -- vim.api.nvim_set_keymap("n", "<leader>cp", ":CopilotChatOpen<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<leader>co", ":CopilotChatClose<CR>", { noremap = true, silent = true })
+
+-- Markdown and LaTeX keymaps
+vim.api.nvim_set_keymap("n", "<leader>mp", ":lua require('nabla').popup()<CR>", { noremap = true, silent = true, desc = "Show LaTeX popup" })
+vim.api.nvim_set_keymap("n", "<leader>mt", ":lua require('nabla').toggle_virt()<CR>", { noremap = true, silent = true, desc = "Toggle LaTeX virtual text" })
+vim.api.nvim_set_keymap("n", "<leader>mv", ":Markview toggle<CR>", { noremap = true, silent = true, desc = "Toggle Markview" })
+
+-- Additional LaTeX processing with Knap
+vim.api.nvim_set_keymap("n", "<leader>kp", ":lua require('knap').process_once()<CR>", { noremap = true, silent = true, desc = "Process LaTeX once" })
+vim.api.nvim_set_keymap("n", "<leader>kc", ":lua require('knap').close_viewer()<CR>", { noremap = true, silent = true, desc = "Close LaTeX viewer" })
+vim.api.nvim_set_keymap("n", "<leader>kt", ":lua require('knap').toggle_autopreviewing()<CR>", { noremap = true, silent = true, desc = "Toggle auto-preview" })
+
+-- Obsidian keymaps
+vim.api.nvim_set_keymap("n", "<leader>on", ":ObsidianNew<CR>", { noremap = true, silent = true, desc = "Create new Obsidian note" })
+vim.api.nvim_set_keymap("n", "<leader>oo", ":ObsidianOpen<CR>", { noremap = true, silent = true, desc = "Open note in Obsidian app" })
+vim.api.nvim_set_keymap("n", "<leader>os", ":ObsidianSearch<CR>", { noremap = true, silent = true, desc = "Search Obsidian notes" })
+vim.api.nvim_set_keymap("n", "<leader>ol", ":ObsidianLinks<CR>", { noremap = true, silent = true, desc = "Show note links" })
+vim.api.nvim_set_keymap("n", "<leader>ob", ":ObsidianBacklinks<CR>", { noremap = true, silent = true, desc = "Show backlinks" })

@@ -10,6 +10,13 @@ opt.guicursor = "n:block-blinkon250-blinkoff150,i:ver25"
 
 opt.scrolloff = 8
 
+-- Conceal settings for better LaTeX and markdown rendering
+opt.conceallevel = 2
+opt.concealcursor = ""
+
+-- Spell checking for markdown files
+opt.spelllang = "en_us"
+
 -- enable error float diagnostics
 -- See configs in keymaps to trigger the float
 -- Crrently set to   "<leader>r",
@@ -20,4 +27,16 @@ vim.diagnostic.config({
     border = "rounded", -- Use rounded border for the floating window
     width = 80, -- Set your desired width here
   },
+})
+
+-- Auto-commands for markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.conceallevel = 2
+    vim.opt_local.concealcursor = ""
+  end,
 })

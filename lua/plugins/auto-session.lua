@@ -8,6 +8,13 @@ return {
   opts = {
     suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
     -- log_level = 'debug',
+    
+    -- Add error handling and disable problematic features
+    -- auto_save = true,
+    -- auto_restore = false, -- Disable auto restore to prevent errors
+    -- auto_create = false,
+    
+    -- Session lens configuration
     session_lens = {
       -- If load_on_setup is false, make sure you use `:SessionSearch` to open the picker as it will initialize everything first
       load_on_setup = true,

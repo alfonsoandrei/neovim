@@ -46,15 +46,20 @@ This setup uses a variety of plugins to enhance the Neovim experience. Here's a 
 *   **[typos-lsp](https://github.com/crate-ci/typos-lsp):** A typo-checking LSP.
 *   **[vtsls](https://github.com/yioneko/vtsls-settings.nvim):** A powerful TypeScript and JavaScript LSP.
 
-### Markdown
+### Markdown & LaTeX
 
-*   **[obsidian.nvim](https://github.com/epwalsh/obsidian.nvim):** Obsidian integration.
-*   **[markview.nvim](https://github.com/OXY2DEV/markview.nvim):** A Markdown preview plugin.
+*   **[obsidian.nvim](https://github.com/epwalsh/obsidian.nvim):** Obsidian integration for note-taking workflows.
+*   **[markview.nvim](https://github.com/OXY2DEV/markview.nvim):** Enhanced Markdown rendering with LaTeX support.
 *   **[image.nvim](https://github.com/3rd/image.nvim):** Displays images in the terminal.
+*   **[nabla.nvim](https://github.com/jbyuki/nabla.nvim):** LaTeX formula rendering in popup and virtual text.
+*   **[vimtex](https://github.com/lervag/vimtex):** Comprehensive LaTeX support.
+*   **[hologram.nvim](https://github.com/edluffy/hologram.nvim):** Alternative LaTeX/image rendering.
 
 ## Keymaps
 
 This configuration uses the standard LazyVim keymaps, with a few additions for specific plugins. Here are some of the custom keymaps:
+
+### General
 
 | Keymap      | Description                  |
 | ----------- | ---------------------------- |
@@ -66,6 +71,24 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 | `<leader>cD` | Fix all diagnostics (vtsls)  |
 | `<leader>cV` | Select TS workspace version (vtsls) |
 
+### Markdown & LaTeX
+
+| Keymap      | Description                  |
+| ----------- | ---------------------------- |
+| `<leader>mp` | Show LaTeX popup (nabla)    |
+| `<leader>mt` | Toggle LaTeX virtual text   |
+| `<leader>mv` | Toggle Markview rendering   |
+
+### Obsidian
+
+| Keymap      | Description                  |
+| ----------- | ---------------------------- |
+| `<leader>on` | Create new Obsidian note    |
+| `<leader>oo` | Open note in Obsidian app   |
+| `<leader>os` | Search Obsidian notes       |
+| `<leader>ol` | Show note links             |
+| `<leader>ob` | Show backlinks              |
+
 ## Autocmds
 
 There are no custom autocommands defined in this configuration. The `lua/config/autocmds.lua` file is available for adding custom autocommands in the future.
@@ -76,4 +99,32 @@ This configuration sets a few custom options in `lua/config/options.lua`:
 
 *   `opt.guicursor = "n:block-blinkon250-blinkoff150,i:ver25"`: Customizes the cursor style.
 *   `opt.scrolloff = 8`: Keeps 8 lines of context around the cursor.
+*   `opt.conceallevel = 2`: Enables concealing for better LaTeX and markdown rendering.
 *   Float diagnostics are enabled for a better error-viewing experience.
+*   Spell checking and text wrapping are automatically enabled for markdown files.
+
+## LaTeX Formula Rendering
+
+This configuration supports rendering LaTeX formulas in Markdown files, making it suitable as an Obsidian-like note-taking environment:
+
+### Inline Math
+Use single dollar signs for inline formulas: `$E = mc^2$`
+
+### Block Math
+Use double dollar signs for block formulas:
+```
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+```
+
+### Usage
+1. **Popup rendering:** Place cursor on a LaTeX formula and press `<leader>mp` to see a rendered popup
+2. **Virtual text:** Press `<leader>mt` to toggle virtual text rendering of all formulas in the buffer
+3. **Enhanced view:** Press `<leader>mv` to toggle Markview's enhanced markdown rendering
+
+### Requirements
+- LaTeX distribution (already installed)
+- For best results, use a terminal that supports image protocols (Kitty, WezTerm, or iTerm2 with imgcat)
+
+See `test-latex.md` in the config directory for examples of all supported LaTeX features.

@@ -10,6 +10,9 @@ opt.guicursor = "n:block-blinkon250-blinkoff150,i:ver25"
 
 opt.scrolloff = 8
 
+-- Session options for auto-session
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- Conceal settings for better LaTeX and markdown rendering
 opt.conceallevel = 2
 opt.concealcursor = ""

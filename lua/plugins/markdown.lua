@@ -36,57 +36,63 @@ return {
       -- vim.g.markview_log_level = "debug"
       
       require("markview").setup({
-        modes = { "n", "i", "no", "c" },
-        hybrid_modes = { "i" },
-        
-        callbacks = {
-          on_enable = function(_, win)
-            vim.wo[win].conceallevel = 2
-            vim.wo[win].concealcursor = "c"
-          end
+        preview = {
+          modes = { "n", "i", "no", "c" },
+          hybrid_modes = { "i" },
+          callbacks = {
+            on_enable = function(_, win)
+              vim.wo[win].conceallevel = 2
+              vim.wo[win].concealcursor = "c"
+            end
+          },
         },
         
         -- LaTeX configuration
         latex = {
-          enabled = true,
-          inline = {
+          inlines = {
             enable = true,
           },
-          block = {
+          blocks = {
             enable = true,
           },
         },
         
-        -- Math block styling
-        block_quotes = {
-          enable = true,
+        -- Markdown configuration
+        markdown = {
+          -- Block quotes styling
+          block_quotes = {
+            enable = true,
+          },
+          
+          -- Code block styling
+          code_blocks = {
+            enable = true,
+            style = "language",
+          },
+          
+          -- Headings styling
+          headings = {
+            enable = true,
+            shift_width = 0,
+          },
+          
+          -- List styling
+          list_items = {
+            enable = true,
+          },
         },
         
-        -- Code block styling
-        code_blocks = {
-          enable = true,
-          style = "language",
-        },
-        
-        -- Inline code styling
-        inline_codes = {
-          enable = true,
-        },
-        
-        -- Headings styling
-        headings = {
-          enable = true,
-          shift_width = 0,
-        },
-        
-        -- List styling
-        list_items = {
-          enable = true,
-        },
-        
-        -- Checkbox styling
-        checkboxes = {
-          enable = true,
+        -- Inline markdown elements
+        markdown_inline = {
+          -- Checkbox styling
+          checkboxes = {
+            enable = true,
+          },
+          
+          -- Inline code styling
+          inline_codes = {
+            enable = true,
+          },
         },
       })
     end,
@@ -148,11 +154,53 @@ return {
     "lervag/vimtex",
     ft = { "tex", "markdown" },
     config = function()
-      vim.g.vimtex_view_method = "skim" -- Use Skim for macOS, change to your preferred PDF viewer
+      vim.g.vimtex_view_method = "general" -- Use general viewer (Preview.app on macOS)
+      vim.g.vimtex_view_general_viewer = "open"
+      vim.g.vimtex_view_general_options = "-a Preview"
       vim.g.vimtex_compiler_method = "latexmk"
       vim.g.vimtex_quickfix_mode = 0
       vim.g.vimtex_syntax_conceal_disable = 1
     end,
+  },
+
+  -- Image pasting from clipboard
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- Default configuration
+      default = {
+        embed_image_as_base64 = false,
+        prompt_for_file_name = true,
+        drag_and_drop = {
+          insert_mode = true,
+        },
+        -- Use relative path for better compatibility
+        use_absolute_path = false,
+      },
+      -- Filetypes configuration
+      filetypes = {
+        markdown = {
+          url_encode_path = true,
+          template = "![$CURSOR]($FILE_PATH)",
+          drag_and_drop = {
+            download_images = false,
+          },
+        },
+        -- Obsidian-style configuration
+        vimwiki = {
+          url_encode_path = true,
+          template = "![$CURSOR]($FILE_PATH)",
+          drag_and_drop = {
+            download_images = false,
+          },
+        },
+      },
+    },
+    keys = {
+      -- `<leader>p` to paste image from clipboard
+      { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+    },
   },
 
   -- Treesitter configuration for markdown and custom highlighting

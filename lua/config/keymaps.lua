@@ -10,6 +10,22 @@
 vim.api.nvim_set_keymap("n", "<leader>mp", ":lua require('nabla').popup()<CR>", { noremap = true, silent = true, desc = "Show LaTeX popup" })
 vim.api.nvim_set_keymap("n", "<leader>mt", ":lua require('nabla').toggle_virt()<CR>", { noremap = true, silent = true, desc = "Toggle LaTeX virtual text" })
 vim.api.nvim_set_keymap("n", "<leader>mv", ":Markview toggle<CR>", { noremap = true, silent = true, desc = "Toggle Markview" })
+vim.api.nvim_set_keymap("n", "<leader>p", ":PasteImage<CR>", { noremap = true, silent = true, desc = "Paste image from clipboard" })
+
+-- Image toggle function
+vim.keymap.set("n", "<leader>ti", function()
+  local image = require("image")
+  if vim.g.image_display_enabled == false then
+    vim.g.image_display_enabled = true
+    -- Re-render images in current buffer
+    vim.cmd("edit")  -- Refresh the buffer to show images
+    vim.notify("Images enabled", vim.log.levels.INFO)
+  else
+    vim.g.image_display_enabled = false
+    image.clear()
+    vim.notify("Images disabled", vim.log.levels.INFO)
+  end
+end, { noremap = true, silent = true, desc = "Toggle image display" })
 
 -- Additional LaTeX processing with Knap
 vim.api.nvim_set_keymap("n", "<leader>kp", ":lua require('knap').process_once()<CR>", { noremap = true, silent = true, desc = "Process LaTeX once" })

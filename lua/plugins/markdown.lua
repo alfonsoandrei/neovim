@@ -177,6 +177,8 @@ return {
         },
         -- Use relative path for better compatibility
         use_absolute_path = false,
+        -- Configure the directory where images are saved
+        dir_path = "9. Meta/Images", -- Obsidian-style folder organization
       },
       -- Filetypes configuration
       filetypes = {
@@ -186,6 +188,8 @@ return {
           drag_and_drop = {
             download_images = false,
           },
+          -- Override directory for markdown files specifically
+          dir_path = "9. Meta/Images",
         },
         -- Obsidian-style configuration
         vimwiki = {
@@ -194,6 +198,8 @@ return {
           drag_and_drop = {
             download_images = false,
           },
+          -- Override directory for vimwiki files specifically
+          dir_path = "9. Meta/Images",
         },
       },
     },

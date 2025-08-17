@@ -203,7 +203,7 @@ There are no custom autocommands defined in this configuration. The `lua/config/
 This configuration sets a few custom options in `lua/config/options.lua`:
 
 - `opt.guicursor = "n:block-blinkon250-blinkoff150,i:ver25"`: Customizes the cursor style.
-- `opt.scrolloff = 8`: Keeps 8 lines of context around the cursor.
+- `opt.scrolloff = 4`: Keeps 8 lines of context around the cursor.
 - `opt.sessionoptions`: Properly configured for auto-session with localoptions support.
 - `opt.conceallevel = 2`: Enables concealing for better LaTeX and markdown rendering.
 - Float diagnostics are enabled for a better error-viewing experience.

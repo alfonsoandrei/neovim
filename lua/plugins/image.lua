@@ -49,8 +49,8 @@ return {
         },
       },
       -- Optional: set a max width and height for all images
-      max_width = 240,
-      max_height = 40,
+      max_width = 140,
+      max_height = 20,
       max_width_window_percentage = nil, -- this is the body
       max_height_window_percentage = nil,
       window_overlap_clear_enabled = false, -- toggles images when windows are overlapped

@@ -8,7 +8,7 @@ local opt = vim.opt
 
 opt.guicursor = "n:block-blinkon250-blinkoff150,i:ver25"
 
-opt.scrolloff = 8
+opt.scrolloff = 4
 
 -- Session options for auto-session
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

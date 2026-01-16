@@ -136,7 +136,6 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 | `<leader>cu` | Remove unused imports (vtsls)       |
 | `<leader>cD` | Fix all diagnostics (vtsls)         |
 | `<leader>cV` | Select TS workspace version (vtsls) |
-| `<leader>th` | Toggle inlay hints                  |
 
 ### Markdown & LaTeX
 

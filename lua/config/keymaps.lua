@@ -53,16 +53,7 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true, desc = "Toggle auto-preview" }
 )
 
-vim.g.inlay_hints_enabled = true
-vim.keymap.set("n", "<leader>th", function()
-  vim.g.inlay_hints_enabled = not vim.g.inlay_hints_enabled
-  vim.lsp.inlay_hint.enable(vim.g.inlay_hints_enabled)
-  if vim.g.inlay_hints_enabled then
-    vim.notify("Inlay hints enabled", vim.log.levels.INFO)
-  else
-    vim.notify("Inlay hints disabled", vim.log.levels.INFO)
-  end
-end, { noremap = true, silent = true, desc = "Toggle inlay hints" })
+
 
 -- Image toggle function
 vim.keymap.set("n", "<leader>ti", function()

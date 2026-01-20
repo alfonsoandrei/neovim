@@ -13,23 +13,23 @@ return {
             typescript = {
               inlayHints = {
                 -- Set the inlay hints you want to true
-                variableTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                parameterNames = { enabled = "all" },
-                parameterTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                enumMemberValues = { enabled = true },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = false },
+                parameterNames = { enabled = "none" },
+                parameterTypes = { enabled = false },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = false },
               },
             },
             -- Also apply the same settings for Javascript
             javascript = {
               inlayHints = {
-                variableTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                parameterNames = { enabled = "all" },
-                parameterTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                enumMemberValues = { enabled = true },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = false },
+                parameterNames = { enabled = "none" },
+                parameterTypes = { enabled = false },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = false },
               },
             },
           },

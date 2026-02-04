@@ -164,6 +164,7 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 | `<leader>os` | Search Obsidian notes     |
 | `<leader>ol` | Show note links           |
 | `<leader>ob` | Show backlinks            |
+| `<leader>ot` | Open today's note         |
 
 ### Spell Checking
 

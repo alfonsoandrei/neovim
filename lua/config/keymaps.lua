@@ -173,3 +173,9 @@ vim.api.nvim_set_keymap(
   ":ObsidianBacklinks<CR>",
   { noremap = true, silent = true, desc = "Show backlinks" }
 )
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>ot",
+  ":ObsidianToday<CR>",
+  { noremap = true, silent = true, desc = "Open today's note" }
+)

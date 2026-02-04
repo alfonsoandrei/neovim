@@ -167,6 +167,22 @@ return {
     end,
   },
 
+  -- Easy table editing with vim-table-mode
+  {
+    "dhruvasagar/vim-table-mode",
+    ft = { "markdown" },
+    config = function()
+      -- Enable table mode for markdown
+      vim.g.table_mode_corner = '|'
+      vim.g.table_mode_corner_corner = '|'
+      vim.g.table_mode_header_fillchar = '-'
+    end,
+    keys = {
+      { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Toggle table mode" },
+      { "<leader>tr", "<cmd>TableModeRealign<cr>", desc = "Realign table" },
+    },
+  },
+
   -- Image pasting from clipboard
   {
     "HakonHarnes/img-clip.nvim",
@@ -182,7 +198,7 @@ return {
         -- Use relative path for better compatibility
         use_absolute_path = false,
         -- Configure the directory where images are saved
-        dir_path = "9. Meta/Images", -- Obsidian-style folder organization
+        dir_path = "meta/images",
       },
       -- Filetypes configuration
       filetypes = {

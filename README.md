@@ -120,6 +120,7 @@ This setup uses a variety of plugins to enhance the Neovim experience. Here's a 
 - **[nabla.nvim](https://github.com/jbyuki/nabla.nvim):** LaTeX formula rendering in popup and virtual text.
 - **[vimtex](https://github.com/lervag/vimtex):** Comprehensive LaTeX support with Preview.app integration.
 - **[knap](https://github.com/frabjous/knap):** LaTeX and markdown preview with auto-processing.
+- **[vim-table-mode](https://github.com/dhruvasagar/vim-table-mode):** Automatic markdown table formatting and editing.
 
 ## Keymaps
 
@@ -146,6 +147,8 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 | `<leader>mv` | Toggle Markview rendering  |
 | `<leader>p`  | Paste image from clipboard |
 | `<leader>ti` | Toggle image display       |
+| `<leader>tm` | Toggle table mode          |
+| `<leader>tr` | Realign table              |
 
 ### LaTeX Processing (Knap)
 
@@ -391,3 +394,44 @@ fd --version
 ```
 
 See `test-latex.md` and `latex-usage-guide.md` in the config directory for comprehensive examples.
+
+## Markdown Table Editing
+
+This configuration includes **vim-table-mode** for easy markdown table creation and editing:
+
+### Creating Tables
+
+1. **Enable table mode:** Press `<leader>tm` to toggle table mode on
+2. **Start typing a table:**
+   ```markdown
+   | Column 1 | Column 2 | Column 3 |
+   ```
+3. **Auto-formatting:** As you type `|` characters and content, the table automatically aligns
+4. **Create separator:** Type `||` on a new line to create a header separator:
+   ```markdown
+   | Column 1 | Column 2 | Column 3 |
+   |----------|----------|----------|
+   ```
+5. **Continue adding rows:** Just keep typing with `|` separators:
+   ```markdown
+   | Column 1 | Column 2 | Column 3 |
+   |----------|----------|----------|
+   | Data 1   | Data 2   | Data 3   |
+   | More 1   | More 2   | More 3   |
+   ```
+
+### Table Editing Features
+
+- **Auto-alignment:** Columns automatically adjust width to fit content
+- **Easy navigation:** Move between cells with Tab or arrow keys
+- **Add rows:** Simply type new lines with `|` delimiters
+- **Add columns:** Add more `|` separators anywhere in the table
+- **Realign:** Press `<leader>tr` to manually realign a table
+- **Toggle on/off:** Press `<leader>tm` to disable table mode when done
+
+### Tips
+
+- Table mode auto-formats as you type, making Obsidian-style table editing seamless
+- You can edit existing tables - just enable table mode and start editing
+- The plugin works with standard Markdown table syntax
+- No need to manually align columns - it's all automatic!

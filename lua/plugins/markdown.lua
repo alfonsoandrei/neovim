@@ -16,6 +16,10 @@ return {
           path = "~/Documents/obsidian-vault/notes",
         },
       },
+      daily_notes = {
+        folder = "0. Daily Notes",
+        date_format = "%Y-%m-%d",
+      },
       ui = {
         enable = true,
         checkboxes = {

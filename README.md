@@ -171,18 +171,20 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 
 ### Spell Checking
 
-| Keymap        | Description                      |
-| ------------- | -------------------------------- |
-| `]s`          | Jump to next misspelled word     |
-| `[s`          | Jump to previous misspelled word |
-| `z=`          | Show spelling suggestions        |
-| `<leader>sg`  | Add word to dictionary (good)    |
-| `<leader>sw`  | Mark word as misspelled (wrong)  |
-| `<leader>sG`  | Add word to session dictionary   |
-| `<leader>sW`  | Mark word as wrong for session   |
-| `<leader>sug` | Undo add to dictionary           |
-| `<leader>suw` | Undo mark as wrong               |
-| `<leader>ts`  | Toggle spell checking on/off     |
+| Keymap        | Description                          |
+| ------------- | ------------------------------------ |
+| `]s`          | Jump to next misspelled word         |
+| `[s`          | Jump to previous misspelled word     |
+| `z=`          | Show spelling suggestions (default)  |
+| `<leader>sz`  | Show spelling suggestions (Telescope)|
+| `<leader>sg`  | Add word to dictionary (good)        |
+| `<leader>sw`  | Mark word as misspelled (wrong)      |
+| `<leader>sc`  | Add word to .cspell.json             |
+| `<leader>sG`  | Add word to session dictionary       |
+| `<leader>sW`  | Mark word as wrong for session       |
+| `<leader>sug` | Undo add to dictionary               |
+| `<leader>suw` | Undo mark as wrong                   |
+| `<leader>ts`  | Toggle spell checking on/off         |
 
 ### Text Editing
 

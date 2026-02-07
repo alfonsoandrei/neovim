@@ -19,6 +19,8 @@ opt.concealcursor = ""
 
 -- Spell checking for markdown files
 opt.spelllang = "en_us"
+opt.spellsuggest = "best,9" -- Show 9 best suggestions
+opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom dictionary location
 
 -- enable error float diagnostics
 -- See configs in keymaps to trigger the float

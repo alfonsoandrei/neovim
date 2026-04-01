@@ -186,6 +186,26 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 | `<leader>suw` | Undo mark as wrong                   |
 | `<leader>ts`  | Toggle spell checking on/off         |
 
+### Debugging (Go)
+
+| Keymap       | Description                                                                                  |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| `<leader>db` | Toggle breakpoint on the current line so the debugger pauses execution there                 |
+| `<leader>dB` | Set a conditional breakpoint that only triggers when a specified expression evaluates to true |
+| `<leader>dc` | Start a new debug session or continue execution until the next breakpoint is hit             |
+| `<leader>dC` | Run the program until execution reaches the line where your cursor is positioned             |
+| `<leader>di` | Step into the function call on the current line to debug inside it                           |
+| `<leader>do` | Step over the current line, executing it without entering any function calls                 |
+| `<leader>dO` | Step out of the current function, returning to the caller                                    |
+| `<leader>dp` | Pause a running debug session to inspect the current state                                   |
+| `<leader>dt` | Terminate the current debug session and stop the debugger                                    |
+| `<leader>du` | Toggle the DAP UI panels showing variables, call stack, breakpoints, and console             |
+| `<leader>de` | Evaluate an expression in the current debug context and display its value                    |
+| `<leader>dw` | Add a watch expression that updates automatically as you step through code                   |
+| `<leader>dr` | Toggle the REPL (Read-Eval-Print Loop) for running commands in the debug context             |
+| `<leader>ds` | Open a session picker to switch between active debug sessions                                |
+| `<leader>td` | Debug the nearest Go test function using Delve                                               |
+
 ### Text Editing
 
 | Keymap    | Mode   | Description                       |

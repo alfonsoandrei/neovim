@@ -9,6 +9,16 @@
 -- General
 vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true })
 
+-- Rename current file (works in all file types)
+vim.keymap.set("n", "<leader>cR", function()
+  Snacks.rename.rename_file()
+end, { noremap = true, silent = true, desc = "Rename File" })
+
+-- Find files including git-ignored (e.g. .env files)
+vim.keymap.set("n", "<leader>fI", function()
+  require("telescope.builtin").find_files({ no_ignore = true, hidden = true })
+end, { desc = "Find Files (no ignore)" })
+
 -- Markdown and LaTeX keymaps
 vim.api.nvim_set_keymap(
   "n",
@@ -142,40 +152,3 @@ vim.keymap.set("v", "S", function()
   vim.cmd("normal! c" .. left .. "\027pa" .. right .. "\027")
 end, { noremap = true, desc = "Surround selection" })
 
--- Obsidian keymaps
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>on",
-  ":ObsidianNew<CR>",
-  { noremap = true, silent = true, desc = "Create new Obsidian note" }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>oo",
-  ":ObsidianOpen<CR>",
-  { noremap = true, silent = true, desc = "Open note in Obsidian app" }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>os",
-  ":ObsidianSearch<CR>",
-  { noremap = true, silent = true, desc = "Search Obsidian notes" }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>ol",
-  ":ObsidianLinks<CR>",
-  { noremap = true, silent = true, desc = "Show note links" }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>ob",
-  ":ObsidianBacklinks<CR>",
-  { noremap = true, silent = true, desc = "Show backlinks" }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>ot",
-  ":ObsidianToday<CR>",
-  { noremap = true, silent = true, desc = "Open today's note" }
-)

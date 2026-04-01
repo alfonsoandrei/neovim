@@ -1,19 +1,55 @@
+-- Auto-detect Obsidian vault by finding a directory under ~/Documents with a .obsidian/ folder.
+local function find_obsidian_vault()
+  local docs = vim.fn.expand("~") .. "/Documents"
+  local handle = vim.uv.fs_scandir(docs)
+  if not handle then return nil end
+  while true do
+    local name, ftype = vim.uv.fs_scandir_next(handle)
+    if not name then break end
+    if ftype == "directory" then
+      local candidate = docs .. "/" .. name
+      if vim.uv.fs_stat(candidate .. "/.obsidian") then
+        return candidate
+      end
+    end
+  end
+end
+
+local vault_path = find_obsidian_vault()
+
 return {
   -- Obsidian integration
   {
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
-    event = {
-      "BufReadPre " .. vim.fn.expand("~") .. "/Documents/obsidian-vault/notes/**.md",
-      "BufNewFile " .. vim.fn.expand("~") .. "/Documents/obsidian-vault/notes/**.md",
+    enabled = vault_path ~= nil,
+    event = vault_path and {
+      "BufReadPre " .. vault_path .. "/**.md",
+      "BufNewFile " .. vault_path .. "/**.md",
+    } or {},
+    cmd = {
+      "ObsidianNew",
+      "ObsidianOpen",
+      "ObsidianSearch",
+      "ObsidianLinks",
+      "ObsidianBacklinks",
+      "ObsidianToday",
+    },
+    keys = {
+      { "<leader>on", "<cmd>ObsidianNew<CR>",       desc = "New Obsidian note" },
+      { "<leader>oo", "<cmd>ObsidianOpen<CR>",      desc = "Open note in Obsidian" },
+      { "<leader>os", "<cmd>ObsidianSearch<CR>",    desc = "Search Obsidian notes" },
+      { "<leader>ol", "<cmd>ObsidianLinks<CR>",     desc = "Note links" },
+      { "<leader>ob", "<cmd>ObsidianBacklinks<CR>", desc = "Note backlinks" },
+      { "<leader>ot", "<cmd>ObsidianToday<CR>",     desc = "Today's note" },
     },
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     opts = {
       workspaces = {
         {
           name = "personal-notes",
-          path = "~/Documents/obsidian-vault/notes",
+          path = vault_path,
         },
       },
       daily_notes = {

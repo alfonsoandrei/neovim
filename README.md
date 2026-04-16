@@ -145,7 +145,8 @@ This configuration uses the standard LazyVim keymaps, with a few additions for s
 | `<leader>mp` | Show LaTeX popup (nabla)   |
 | `<leader>mt` | Toggle LaTeX virtual text  |
 | `<leader>mv` | Toggle Markview rendering  |
-| `<leader>p`  | Paste image from clipboard |
+| `<leader>pi` | Paste image from clipboard |
+| `<leader>ppass` | Insert password template |
 | `<leader>ti` | Toggle image display       |
 | `<leader>tm` | Toggle table mode          |
 | `<leader>tr` | Realign table              |

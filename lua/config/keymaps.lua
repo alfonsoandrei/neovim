@@ -40,9 +40,15 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
   "n",
-  "<leader>p",
+  "<leader>pi",
   ":PasteImage<CR>",
   { noremap = true, silent = true, desc = "Paste image from clipboard" }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>ppass",
+  ":lua require('plugins.password-template').insert()<CR>",
+  { noremap = true, silent = true, desc = "Insert password template" }
 )
 vim.api.nvim_set_keymap(
   "n",

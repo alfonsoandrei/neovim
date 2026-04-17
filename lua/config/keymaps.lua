@@ -47,7 +47,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<leader>ppass",
-  ":lua require('plugins.password-template').insert()<CR>",
+  ":lua require('utils.password-template').insert()<CR>",
   { noremap = true, silent = true, desc = "Insert password template" }
 )
 vim.api.nvim_set_keymap(

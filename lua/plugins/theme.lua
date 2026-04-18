@@ -8,6 +8,9 @@ return {
     opts = {
       variant = "moon",
       disable_italics = true,
+      styles = {
+        transparency = true,
+      },
 
       -- This is the correct key for overriding specific syntax groups.
       highlight_groups = {

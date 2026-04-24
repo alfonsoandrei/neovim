@@ -4,6 +4,24 @@
 
 local opt = vim.opt
 
+-- When inside tmux, use pbcopy/pbpaste directly instead of OSC 52 queries.
+-- OSC 52 responses from Ghostty leak back through tmux as keyboard input,
+-- causing clipboard contents to appear typed in telescope prompts.
+if vim.env.TMUX then
+  vim.g.clipboard = {
+    name = "macOS-pbcopy",
+    copy = {
+      ["+"] = { "pbcopy" },
+      ["*"] = { "pbcopy" },
+    },
+    paste = {
+      ["+"] = { "pbpaste" },
+      ["*"] = { "pbpaste" },
+    },
+    cache_enabled = 1,
+  }
+end
+
 -- Remap .mjs filetype so vtsls doesn't attach and crash trying to load tsconfig.json.
 -- The javascript treesitter parser is registered for syntax highlighting.
 vim.filetype.add({ extension = { mjs = "mjs" } })

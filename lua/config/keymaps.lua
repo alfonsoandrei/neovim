@@ -29,9 +29,6 @@ map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
 map("n", "K", function()
   return vim.lsp.buf.hover()
 end, { desc = "Hover" })
-map({ "n", "i" }, "<C-k>", function()
-  return vim.lsp.buf.signature_help()
-end, { desc = "Signature Help" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
@@ -43,41 +40,9 @@ map("n", "<leader>fI", function()
   require("telescope.builtin").find_files({ no_ignore = true, hidden = true })
 end, { desc = "Find Files (no ignore)" })
 
--- --- Markdown & LaTeX ---
-map("n", "<leader>mp", function()
-  require("nabla").popup()
-end, { noremap = true, silent = true, desc = "Show LaTeX popup" })
-map("n", "<leader>mt", function()
-  require("nabla").toggle_virt()
-end, { noremap = true, silent = true, desc = "Toggle LaTeX virtual text" })
-map("n", "<leader>mv", "<cmd>Markview toggle<CR>", { noremap = true, silent = true, desc = "Toggle Markview" })
-map("n", "<leader>pi", "<cmd>PasteImage<CR>", { noremap = true, silent = true, desc = "Paste image from clipboard" })
 map("n", "<leader>ppass", function()
   require("utils.password-template").insert()
 end, { noremap = true, silent = true, desc = "Insert password template" })
-map("n", "<leader>kp", function()
-  require("knap").process_once()
-end, { noremap = true, silent = true, desc = "Process LaTeX once" })
-map("n", "<leader>kc", function()
-  require("knap").close_viewer()
-end, { noremap = true, silent = true, desc = "Close LaTeX viewer" })
-map("n", "<leader>kt", function()
-  require("knap").toggle_autopreviewing()
-end, { noremap = true, silent = true, desc = "Toggle auto-preview" })
-
--- --- Images ---
-map("n", "<leader>ti", function()
-  local image = require("image")
-  if vim.g.image_display_enabled == false then
-    vim.g.image_display_enabled = true
-    vim.cmd("edit")
-    vim.notify("Images enabled", vim.log.levels.INFO)
-  else
-    vim.g.image_display_enabled = false
-    image.clear()
-    vim.notify("Images disabled", vim.log.levels.INFO)
-  end
-end, { noremap = true, silent = true, desc = "Toggle image display" })
 
 -- --- Spell Checking ---
 map("n", "]s", "]s", { noremap = true, silent = true, desc = "Next misspelled word" })

@@ -1,0 +1,221 @@
+-- Auto-detect Obsidian vault by finding a directory under ~/Documents with a .obsidian/ folder.
+local function find_obsidian_vault()
+  local docs = vim.fn.expand("~") .. "/Documents"
+  local handle = vim.uv.fs_scandir(docs)
+  if not handle then return nil end
+  while true do
+    local name, ftype = vim.uv.fs_scandir_next(handle)
+    if not name then break end
+    if ftype == "directory" then
+      local candidate = docs .. "/" .. name
+      if vim.uv.fs_stat(candidate .. "/.obsidian") then
+        return candidate
+      end
+    end
+  end
+end
+
+local vault_path = find_obsidian_vault()
+
+return {
+  -- Obsidian integration
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    enabled = vault_path ~= nil,
+    event = vault_path and {
+      "BufReadPre " .. vault_path .. "/**.md",
+      "BufNewFile " .. vault_path .. "/**.md",
+    } or {},
+    cmd = {
+      "ObsidianNew",
+      "ObsidianOpen",
+      "ObsidianSearch",
+      "ObsidianLinks",
+      "ObsidianBacklinks",
+      "ObsidianToday",
+    },
+    keys = {
+      { "<leader>on", "<cmd>ObsidianNew<CR>",       desc = "New Obsidian note" },
+      { "<leader>oo", "<cmd>ObsidianOpen<CR>",      desc = "Open note in Obsidian" },
+      { "<leader>os", "<cmd>ObsidianSearch<CR>",    desc = "Search Obsidian notes" },
+      { "<leader>ol", "<cmd>ObsidianLinks<CR>",     desc = "Note links" },
+      { "<leader>ob", "<cmd>ObsidianBacklinks<CR>", desc = "Note backlinks" },
+      { "<leader>ot", "<cmd>ObsidianToday<CR>",     desc = "Today's note" },
+    },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    opts = {
+      workspaces = {
+        {
+          name = "personal-notes",
+          path = vault_path,
+        },
+      },
+      daily_notes = {
+        folder = "0. Daily Notes",
+        date_format = "%Y-%m-%d",
+      },
+      ui = {
+        enable = true,
+        checkboxes = {
+          [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+          ["x"] = { char = "", hl_group = "ObsidianDone" },
+        },
+      },
+    },
+  },
+
+  -- Markview with LaTeX support
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = true,
+    ft = { "markdown" },
+    config = function()
+      vim.g.markview_conceal_same_line = 1
+      require("markview").setup({
+        preview = {
+          modes = { "n", "i", "no", "c" },
+          hybrid_modes = { "i" },
+          callbacks = {
+            on_enable = function(_, win)
+              vim.wo[win].conceallevel = 2
+              vim.wo[win].concealcursor = "c"
+            end
+          },
+        },
+
+        latex = {
+          inlines = { enable = true },
+          blocks = { enable = true },
+        },
+        markdown = {
+          block_quotes = { enable = true },
+          code_blocks = { enable = true, style = "language" },
+          headings = { enable = true, shift_width = 0 },
+          list_items = { enable = true },
+        },
+        markdown_inline = {
+          checkboxes = { enable = true },
+          inline_codes = { enable = true },
+        },
+      })
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+
+  -- LaTeX formula rendering
+  {
+    "jbyuki/nabla.nvim",
+    ft = { "markdown", "tex" },
+    keys = {
+      { "<leader>mp", function() require("nabla").popup() end, desc = "Show LaTeX popup" },
+      { "<leader>mt", function() require("nabla").toggle_virt() end, desc = "Toggle LaTeX virtual text" },
+    },
+  },
+
+  -- Simple LaTeX preview
+  {
+    "frabjous/knap",
+    ft = { "markdown", "tex" },
+    keys = {
+      { "<leader>kp", function() require("knap").process_once() end, desc = "Process LaTeX once" },
+      { "<leader>kc", function() require("knap").close_viewer() end, desc = "Close LaTeX viewer" },
+      { "<leader>kt", function() require("knap").toggle_autopreviewing() end, desc = "Toggle auto-preview" },
+    },
+    config = function()
+      local gknapsettings = {
+        texoutputext = "pdf",
+        textopdf = "pdflatex -synctex=1 -halt-on-error -interaction=batchmode %docroot%",
+        textopdfviewerlaunch = "open %outputfile%",
+        textopdfviewerrefresh = "none",
+
+        -- Markdown settings
+        mdoutputext = "html",
+        mdtohtml = "pandoc --standalone %docroot% -o %outputfile%",
+        mdhtmlviewerlaunch = "open %outputfile%",
+        mdhtmlviewerrefresh = "none",
+      }
+      vim.g.knap_settings = gknapsettings
+    end,
+  },
+
+  -- VimTeX for LaTeX support
+  {
+    "lervag/vimtex",
+    ft = { "tex", "markdown" },
+    config = function()
+      vim.g.vimtex_view_method = "general" -- Use general viewer (Preview.app on macOS)
+      vim.g.vimtex_view_general_viewer = "open"
+      vim.g.vimtex_view_general_options = "-a Preview"
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_quickfix_mode = 0
+      vim.g.vimtex_syntax_conceal_disable = 1
+    end,
+  },
+
+  -- Easy table editing with vim-table-mode
+  {
+    "dhruvasagar/vim-table-mode",
+    ft = { "markdown" },
+    config = function()
+      vim.g.table_mode_corner = '|'
+      vim.g.table_mode_corner_corner = '|'
+      vim.g.table_mode_header_fillchar = '-'
+    end,
+    keys = {
+      { "<leader>tm", "<cmd>TableModeToggle<cr>", desc = "Toggle table mode" },
+      { "<leader>tr", "<cmd>TableModeRealign<cr>", desc = "Realign table" },
+    },
+  },
+
+  -- Image pasting from clipboard
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      default = {
+        embed_image_as_base64 = false,
+        prompt_for_file_name = true,
+        drag_and_drop = { insert_mode = true },
+        use_absolute_path = false,
+        dir_path = "meta/images",
+      },
+      filetypes = {
+        markdown = {
+          url_encode_path = true,
+          template = "![$CURSOR]($FILE_PATH)",
+          drag_and_drop = { download_images = false },
+          dir_path = "9. Meta/Images",
+        },
+        vimwiki = {
+          url_encode_path = true,
+          template = "![$CURSOR]($FILE_PATH)",
+          drag_and_drop = { download_images = false },
+          dir_path = "9. Meta/Images",
+        },
+      },
+    },
+    keys = {
+      { "<leader>pi", "<cmd>PasteImage<cr>", desc = "Paste image from clipboard" },
+    },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "markdown", "markdown_inline", "latex" })
+      else
+        opts.ensure_installed = { "markdown", "markdown_inline", "latex" }
+      end
+      opts.highlight = opts.highlight or {}
+      opts.highlight.enable = true
+      opts.highlight.additional_vim_regex_highlighting = { "markdown" }
+      return opts
+    end,
+  },
+}

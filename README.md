@@ -364,7 +364,7 @@ This configuration includes seamless image pasting from clipboard:
 
 1. **Take a screenshot** (⌘+⇧+4 on macOS)
 2. **Position cursor** where you want the image in your markdown file
-3. **Press `<leader>p`** to paste the image
+3. **Press `<leader>pi`** to paste the image
 4. **Enter filename** when prompted
 5. **Image is saved** to `9. Meta/Images/` folder and markdown link is inserted
 

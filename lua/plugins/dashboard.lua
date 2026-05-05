@@ -1,7 +1,7 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    images = { enabled = false },
+    image = { enabled = true },
     dashboard = {
       preset = {
         header = [[

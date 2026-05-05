@@ -1,9 +1,6 @@
 return {
-  { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui" },
-
   {
-    "neovim/nvim-lspconfig",
+    "mfussenegger/nvim-dap",
     config = function()
       local dap = require("dap")
 
@@ -61,4 +58,5 @@ return {
       dap.configurations.javascript = dap.configurations.typescript
     end,
   },
+  { "rcarriga/nvim-dap-ui" },
 }

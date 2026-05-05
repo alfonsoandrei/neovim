@@ -127,19 +127,16 @@ return {
       { "<leader>kt", function() require("knap").toggle_autopreviewing() end, desc = "Toggle auto-preview" },
     },
     config = function()
-      local gknapsettings = {
+      vim.g.knap_settings = {
         texoutputext = "pdf",
         textopdf = "pdflatex -synctex=1 -halt-on-error -interaction=batchmode %docroot%",
         textopdfviewerlaunch = "open %outputfile%",
         textopdfviewerrefresh = "none",
-
-        -- Markdown settings
         mdoutputext = "html",
         mdtohtml = "pandoc --standalone %docroot% -o %outputfile%",
         mdhtmlviewerlaunch = "open %outputfile%",
         mdhtmlviewerrefresh = "none",
       }
-      vim.g.knap_settings = gknapsettings
     end,
   },
 

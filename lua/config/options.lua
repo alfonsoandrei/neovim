@@ -27,8 +27,6 @@ end
 vim.filetype.add({ extension = { mjs = "mjs" } })
 vim.treesitter.language.register("javascript", "mjs")
 
--- opt.relativenumber = false
-
 opt.guicursor = "n:block-blinkon250-blinkoff150,i:ver25"
 
 opt.scrolloff = 4
@@ -47,7 +45,7 @@ opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom dict
 
 -- enable error float diagnostics
 -- See configs in keymaps to trigger the float
--- Crrently set to   "<leader>r",
+-- Currently set to   "<leader>r",
 vim.diagnostic.config({
   virtual_text = false, -- Disable virtual text
   float = {
